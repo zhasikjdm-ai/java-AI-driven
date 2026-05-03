@@ -1,0 +1,36 @@
+# ===================================
+# Игнорируемые файлы для Git
+# ===================================
+
+# Maven build output
+target/
+*.jar
+*.war
+*.ear
+
+# IDE файлы
+.idea/
+*.iml
+*.iws
+*.ipr
+.vscode/
+*.code-workspace
+
+# application.yml с реальными ключами (используй application-example.yml)
+# Раскомментируй если хранишь ключ прямо в файле:
+# src/main/resources/application.yml
+
+# Файл с переменными окружения
+.env
+*.env
+
+# OS файлы
+.DS_Store
+Thumbs.db
+
+# Логи
+*.log
+logs/
+
+# Maven wrapper (опционально)
+# !.mvn/wrapper/maven-wrapper.jar

@@ -1,0 +1,18 @@
+# ===================================
+# Пример конфигурации AI-Driven Backend
+# ===================================
+# Скопируйте этот файл как application.yml
+# и замените значения на свои.
+# ===================================
+
+server:
+  port: 8081
+
+ai:
+  api:
+    url: https://api.groq.com/openai/v1/chat/completions
+    key: gsk_YOUR_GROQ_API_KEY_HERE
+    model: llama-3.1-70b-versatile
+    timeout: 30
+    max-tokens: 2048
+    temperature: 0.7

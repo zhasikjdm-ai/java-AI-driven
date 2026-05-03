@@ -1,0 +1,43 @@
+# ===================================
+# AI-Driven Backend — Конфигурация
+# ===================================
+
+server:
+  port: 8081
+
+spring:
+  application:
+    name: ai-driven-backend
+
+# ===================================
+# Настройки AI API (Groq Cloud)
+# ===================================
+ai:
+  api:
+    url: https://api.groq.com/openai/v1/chat/completions
+    key: ${AI_API_KEY:YOUR_API_KEY_HERE}
+    model: llama-3.1-70b-versatile
+    timeout: 30
+    max-tokens: 2048
+    temperature: 0.7
+
+# ===================================
+# Swagger / OpenAPI
+# ===================================
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    enabled: true
+
+# ===================================
+# Логирование
+# ===================================
+logging:
+  level:
+    root: INFO
+    com.ai.driven: DEBUG
+    org.springframework.web: INFO
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
