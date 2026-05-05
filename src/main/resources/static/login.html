@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход — AI-Driven</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-config.js"></script>
+    <style>
+        :root {
+            --bg: #0a0a12;
+            --surface: #10101e;
+            --border: #2a2a4a;
+            --accent: #6c63ff;
+            --text: #e2e8f0;
+            --muted: #64748b;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .auth-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 40px;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 { font-size: 1.8rem; margin-bottom: 8px; text-align: center; }
+        p.subtitle { color: var(--muted); text-align: center; margin-bottom: 30px; font-size: 0.9rem; }
+
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 8px; font-size: 0.85rem; color: var(--muted); }
+        input {
+            width: 100%;
+            padding: 12px 16px;
+            background: #16162a;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: white;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        input:focus { border-color: var(--accent); }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background: var(--accent);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: transform 0.2s, opacity 0.2s;
+        }
+        button:hover { opacity: 0.9; transform: scale(1.01); }
+        button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        .footer-link {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.85rem;
+            color: var(--muted);
+        }
+        .footer-link a { color: var(--accent); text-decoration: none; }
+
+        .error-msg {
+            color: #f87171;
+            font-size: 0.85rem;
+            margin-top: 10px;
+            text-align: center;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="auth-card">
+    <h1>Вход в аккаунт</h1>
+    <p class="subtitle">Добро пожаловать в AI-Driven Backend</p>
+
+    <form id="loginForm">
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" id="email" placeholder="name@example.com" required>
+        </div>
+        <div class="form-group">
+            <label>Пароль</label>
+            <input type="password" id="password" placeholder="••••••••" required>
+        </div>
+        <button type="submit" id="submitBtn">Войти</button>
+        <div id="errorMsg" class="error-msg"></div>
+    </form>
+
+    <div class="footer-link">
+        Нет аккаунта? <a href="register.html">Зарегистрироваться</a>
+    </div>
+</div>
+
+<script>
+    const supabaseClient = supabase.createClient(window.SB_CONFIG.url, window.SB_CONFIG.key);
+    const form = document.getElementById('loginForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const errorMsg = document.getElementById('errorMsg');
+
+    form.onsubmit = async (e) => {
+        e.preventDefault();
+        submitBtn.disabled = true;
+        errorMsg.style.display = 'none';
+
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+
+        const { data, error } = await supabaseClient.auth.signInWithPassword({
+            email,
+            password
+        });
+
+        if (error) {
+            errorMsg.textContent = error.message;
+            errorMsg.style.display = 'block';
+            submitBtn.disabled = false;
+        } else {
+            localStorage.setItem('sb-token', data.session.access_token);
+            window.location.href = 'index.html';
+        }
+    };
+</script>
+
+</body>
+</html>

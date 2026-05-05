@@ -7,6 +7,8 @@
     <meta name="description" content="AI-Driven Backend — интерфейс для общения с AI на базе LLaMA через Groq API"/>
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-config.js"></script>
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -401,9 +403,12 @@
         <div class="logo-icon">🤖</div>
         <span>AI-Driven Backend</span>
     </div>
-    <div class="status-badge" id="statusBadge">
-        <div class="status-dot"></div>
-        <span id="statusText">Проверка...</span>
+    <div style="display: flex; align-items: center; gap: 16px;">
+        <div class="status-badge" id="statusBadge">
+            <div class="status-dot"></div>
+            <span id="statusText">Проверка...</span>
+        </div>
+        <button onclick="logout()" style="background: none; border: 1px solid var(--border); color: var(--muted); padding: 6px 12px; border-radius: 8px; cursor: pointer; font-size: 0.8rem;">Выйти</button>
     </div>
 </header>
 
@@ -498,6 +503,47 @@
 </footer>
 
 <script>
+    const supabaseClient = supabase.createClient(window.SB_CONFIG.url, window.SB_CONFIG.key);
+
+    async function checkAuth() {
+        const { data: { session } } = await supabaseClient.auth.getSession();
+        if (!session) {
+            window.location.href = 'login.html';
+        }
+    }
+    checkAuth();
+
+    async function logout() {
+        await supabaseClient.auth.signOut();
+        window.location.href = 'login.html';
+    }
+
+    async function loadHistory() {
+        const { data: { session } } = await supabaseClient.auth.getSession();
+        if (!session) return;
+
+        const { data, error } = await supabaseClient
+            .from('chat_history')
+            .select('*')
+            .eq('user_id', session.user.id)
+            .order('created_at', { ascending: true });
+
+        if (error) {
+            console.error('Error loading history:', error);
+            return;
+        }
+
+        if (data && data.length > 0) {
+            data.forEach(item => {
+                addMessage('user', item.message, `Вы · ${new Date(item.created_at).toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' })}`);
+                addMessage('bot', item.response, `AI · ${new Date(item.created_at).toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' })}`);
+            });
+            messageCount = data.length;
+            document.getElementById('msgCount').textContent = messageCount;
+        }
+    }
+    loadHistory();
+
     let messageCount = 0;
 
     // ── Автоматическая высота textarea ────────────────────────
@@ -611,6 +657,16 @@
             if (data.success) {
                 addMessage('bot', data.response, `AI · ${timeNow()} · ${elapsed}мс`);
                 document.getElementById('lastTime').textContent = elapsed + 'мс';
+
+                // Сохранение в Supabase
+                const { data: { session } } = await supabaseClient.auth.getSession();
+                if (session) {
+                    await supabaseClient.from('chat_history').insert({
+                        user_id: session.user.id,
+                        message: message,
+                        response: data.response
+                    });
+                }
             } else {
                 addMessage('bot', '❌ ' + (data.response || 'Ошибка AI'), `Ошибка · ${timeNow()}`);
             }
