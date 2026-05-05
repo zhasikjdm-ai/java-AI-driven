@@ -1,10 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>AI-Driven Backend тАФ Chat</title>
-    <meta name="description" content="AI-Driven Backend тАФ ╨╕╨╜╤В╨╡╤А╤Д╨╡╨╣╤Б ╨┤╨╗╤П ╨╛╨▒╤Й╨╡╨╜╨╕╤П ╤Б AI ╨╜╨░ ╨▒╨░╨╖╨╡ LLaMA ╤З╨╡╤А╨╡╨╖ Groq API"/>
+    <title>AI-Driven Backend — Chat</title>
+    <meta name="description" content="AI-Driven Backend — интерфейс для общения с AI на базе LLaMA через Groq API"/>
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
     <style>
@@ -34,7 +34,7 @@
             overflow-x: hidden;
         }
 
-        /* тФАтФА HEADER тФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФА */
+        /* ── HEADER ─────────────────────────────────────────── */
         header {
             background: rgba(16,16,30,0.85);
             backdrop-filter: blur(20px);
@@ -98,7 +98,7 @@
             50% { opacity: 0.3; }
         }
 
-        /* тФАтФА MAIN LAYOUT тФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФА */
+        /* ── MAIN LAYOUT ─────────────────────────────────────── */
         main {
             flex: 1;
             display: flex;
@@ -110,7 +110,7 @@
             gap: 16px;
         }
 
-        /* тФАтФА HERO тФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФА */
+        /* ── HERO ─────────────────────────────────────────────── */
         .hero {
             text-align: center;
             padding: 32px 16px 8px;
@@ -134,7 +134,7 @@
             margin: 0 auto;
         }
 
-        /* тФАтФА CHAT WINDOW тФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФА */
+        /* ── CHAT WINDOW ──────────────────────────────────────── */
         .chat-window {
             background: var(--card);
             border: 1px solid var(--border);
@@ -152,7 +152,7 @@
         .chat-window::-webkit-scrollbar-track { background: transparent; }
         .chat-window::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
 
-        /* тФАтФА MESSAGES тФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФА */
+        /* ── MESSAGES ─────────────────────────────────────────── */
         .msg {
             display: flex;
             gap: 12px;
@@ -239,7 +239,7 @@
             30% { transform: translateY(-6px); opacity: 1; }
         }
 
-        /* тФАтФА INPUT AREA тФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФА */
+        /* ── INPUT AREA ──────────────────────────────────────── */
         .input-area {
             background: var(--card);
             border: 1px solid var(--border);
@@ -292,7 +292,7 @@
         #sendBtn:active { transform: scale(0.97); }
         #sendBtn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
 
-        /* тФАтФА QUICK PROMPTS тФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФА */
+        /* ── QUICK PROMPTS ────────────────────────────────────── */
         .quick-prompts {
             display: flex;
             flex-wrap: wrap;
@@ -327,7 +327,7 @@
             background: rgba(108,99,255,0.08);
         }
 
-        /* тФАтФА STATS BAR тФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФА */
+        /* ── STATS BAR ────────────────────────────────────────── */
         .stats-bar {
             display: flex;
             gap: 12px;
@@ -362,7 +362,7 @@
         .stat-label { font-size: 0.72rem; color: var(--muted); }
         .stat-value { font-size: 1rem; font-weight: 600; }
 
-        /* тФАтФА FOOTER тФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФА */
+        /* ── FOOTER ───────────────────────────────────────────── */
         footer {
             text-align: center;
             padding: 20px;
@@ -374,7 +374,7 @@
         footer a { color: var(--accent2); text-decoration: none; }
         footer a:hover { text-decoration: underline; }
 
-        /* тФАтФА BG DECORATION тФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФА */
+        /* ── BG DECORATION ────────────────────────────────────── */
         .bg-glow {
             position: fixed;
             pointer-events: none;
@@ -398,12 +398,12 @@
 <!-- HEADER -->
 <header>
     <div class="logo">
-        <div class="logo-icon">ЁЯдЦ</div>
+        <div class="logo-icon">🤖</div>
         <span>AI-Driven Backend</span>
     </div>
     <div class="status-badge" id="statusBadge">
         <div class="status-dot"></div>
-        <span id="statusText">╨Я╤А╨╛╨▓╨╡╤А╨║╨░...</span>
+        <span id="statusText">Проверка...</span>
     </div>
 </header>
 
@@ -412,38 +412,38 @@
 
     <!-- Hero -->
     <div class="hero">
-        <h1>╨Ч╨░╨┤╨░╨╣ ╨▓╨╛╨┐╤А╨╛╤Б AI</h1>
-        <p>Powered by LLaMA 3.1 ╤З╨╡╤А╨╡╨╖ Groq API ┬╖ Spring Boot Backend</p>
+        <h1>Задай вопрос AI</h1>
+        <p>Powered by LLaMA 3.1 через Groq API · Spring Boot Backend</p>
     </div>
 
     <!-- Stats -->
     <div class="stats-bar">
         <div class="stat-card">
-            <div class="stat-icon purple">ЁЯза</div>
+            <div class="stat-icon purple">🧠</div>
             <div>
-                <div class="stat-label">╨Ь╨╛╨┤╨╡╨╗╤М</div>
+                <div class="stat-label">Модель</div>
                 <div class="stat-value" style="font-size:0.82rem">LLaMA 3.1 70B</div>
             </div>
         </div>
         <div class="stat-card">
-            <div class="stat-icon green">тЪб</div>
+            <div class="stat-icon green">⚡</div>
             <div>
-                <div class="stat-label">╨Я╤А╨╛╨▓╨░╨╣╨┤╨╡╤А</div>
+                <div class="stat-label">Провайдер</div>
                 <div class="stat-value" style="font-size:0.82rem">Groq Cloud</div>
             </div>
         </div>
         <div class="stat-card">
-            <div class="stat-icon blue">ЁЯТм</div>
+            <div class="stat-icon blue">💬</div>
             <div>
-                <div class="stat-label">╨б╨╛╨╛╨▒╤Й╨╡╨╜╨╕╨╣</div>
+                <div class="stat-label">Сообщений</div>
                 <div class="stat-value" id="msgCount">0</div>
             </div>
         </div>
         <div class="stat-card">
-            <div class="stat-icon purple">тП▒я╕П</div>
+            <div class="stat-icon purple">⏱️</div>
             <div>
-                <div class="stat-label">╨Я╨╛╤Б╨╗. ╨╛╤В╨▓╨╡╤В</div>
-                <div class="stat-value" id="lastTime">тАФ</div>
+                <div class="stat-label">Посл. ответ</div>
+                <div class="stat-value" id="lastTime">—</div>
             </div>
         </div>
     </div>
@@ -451,34 +451,34 @@
     <!-- Chat -->
     <div class="chat-window" id="chatWindow">
         <div class="msg bot">
-            <div class="msg-avatar">ЁЯдЦ</div>
+            <div class="msg-avatar">🤖</div>
             <div>
                 <div class="msg-bubble">
-                    ╨Я╤А╨╕╨▓╨╡╤В! ╨п AI-╨░╤Б╤Б╨╕╤Б╤В╨╡╨╜╤В ╨╜╨░ ╨▒╨░╨╖╨╡ <strong>LLaMA 3.1</strong>. ╨Ч╨░╨┤╨░╨▓╨░╨╣ ╨╗╤О╨▒╤Л╨╡ ╨▓╨╛╨┐╤А╨╛╤Б╤Л тАФ ╨╛╤В╨▓╨╡╤З╤Г ╨╜╨░ ╤А╤Г╤Б╤Б╨║╨╛╨╝ ╨╕╨╗╨╕ ╨╗╤О╨▒╨╛╨╝ ╨┤╤А╤Г╨│╨╛╨╝ ╤П╨╖╤Л╨║╨╡. ЁЯЪА
+                    Привет! Я AI-ассистент на базе <strong>LLaMA 3.1</strong>. Задавай любые вопросы — отвечу на русском или любом другом языке. 🚀
                 </div>
-                <div class="msg-meta">AI-Driven Backend ┬╖ ╤В╨╛╨╗╤М╨║╨╛ ╤З╤В╨╛</div>
+                <div class="msg-meta">AI-Driven Backend · только что</div>
             </div>
         </div>
     </div>
 
     <!-- Quick prompts -->
     <div class="quick-prompts">
-        <h3>╨С╤Л╤Б╤В╤А╤Л╨╡ ╨▓╨╛╨┐╤А╨╛╤Б╤Л</h3>
-        <button class="chip" onclick="setMessage('╨з╤В╨╛ ╤В╨░╨║╨╛╨╡ ╨╕╤Б╨║╤Г╤Б╤Б╤В╨▓╨╡╨╜╨╜╤Л╨╣ ╨╕╨╜╤В╨╡╨╗╨╗╨╡╨║╤В?')">╨з╤В╨╛ ╤В╨░╨║╨╛╨╡ ╨Ш╨Ш?</button>
-        <button class="chip" onclick="setMessage('╨Ю╨▒╤К╤П╤Б╨╜╨╕ Spring Boot ╨╖╨░ 3 ╨┐╤А╨╡╨┤╨╗╨╛╨╢╨╡╨╜╨╕╤П')">Spring Boot</button>
-        <button class="chip" onclick="setMessage('╨Ъ╨░╨║ ╤А╨░╨▒╨╛╤В╨░╨╡╤В REST API?')">REST API</button>
-        <button class="chip" onclick="setMessage('╨з╤В╨╛ ╤В╨░╨║╨╛╨╡ ╨╝╨░╤И╨╕╨╜╨╜╨╛╨╡ ╨╛╨▒╤Г╤З╨╡╨╜╨╕╨╡?')">╨Ь╨░╤И╨╕╨╜╨╜╨╛╨╡ ╨╛╨▒╤Г╤З╨╡╨╜╨╕╨╡</button>
-        <button class="chip" onclick="setMessage('╨Э╨░╨┐╨╕╤И╨╕ ╨┐╤А╨╕╨╝╨╡╤А ╨║╨╛╨┤╨░ ╨╜╨░ Java ╤Б ╨╕╤Б╨┐╨╛╨╗╤М╨╖╨╛╨▓╨░╨╜╨╕╨╡╨╝ Stream API')">Java Streams</button>
+        <h3>Быстрые вопросы</h3>
+        <button class="chip" onclick="setMessage('Что такое искусственный интеллект?')">Что такое ИИ?</button>
+        <button class="chip" onclick="setMessage('Объясни Spring Boot за 3 предложения')">Spring Boot</button>
+        <button class="chip" onclick="setMessage('Как работает REST API?')">REST API</button>
+        <button class="chip" onclick="setMessage('Что такое машинное обучение?')">Машинное обучение</button>
+        <button class="chip" onclick="setMessage('Напиши пример кода на Java с использованием Stream API')">Java Streams</button>
     </div>
 
     <!-- Input -->
     <div class="input-area">
         <textarea
             id="messageInput"
-            placeholder="╨Э╨░╨┐╨╕╤И╨╕╤В╨╡ ╨▓╨╛╨┐╤А╨╛╤Б... (Enter тАФ ╨╛╤В╨┐╤А╨░╨▓╨╕╤В╤М, Shift+Enter тАФ ╨╜╨╛╨▓╨░╤П ╤Б╤В╤А╨╛╨║╨░)"
+            placeholder="Напишите вопрос... (Enter — отправить, Shift+Enter — новая строка)"
             rows="1"
         ></textarea>
-        <button id="sendBtn" onclick="sendMessage()" title="╨Ю╤В╨┐╤А╨░╨▓╨╕╤В╤М">
+        <button id="sendBtn" onclick="sendMessage()" title="Отправить">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                 <line x1="22" y1="2" x2="11" y2="13"></line>
                 <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
@@ -491,8 +491,8 @@
 <!-- FOOTER -->
 <footer>
     <p>
-        AI-Driven Backend ┬╖ Spring Boot 3.2 ┬╖ 
-        <a href="/swagger-ui.html" target="_blank">Swagger UI</a> ┬╖ 
+        AI-Driven Backend · Spring Boot 3.2 · 
+        <a href="/swagger-ui.html" target="_blank">Swagger UI</a> · 
         <a href="/api/ai/health" target="_blank">Health Check</a>
     </p>
 </footer>
@@ -500,14 +500,14 @@
 <script>
     let messageCount = 0;
 
-    // тФАтФА ╨Р╨▓╤В╨╛╨╝╨░╤В╨╕╤З╨╡╤Б╨║╨░╤П ╨▓╤Л╤Б╨╛╤В╨░ textarea тФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФА
+    // ── Автоматическая высота textarea ────────────────────────
     const textarea = document.getElementById('messageInput');
     textarea.addEventListener('input', () => {
         textarea.style.height = 'auto';
         textarea.style.height = Math.min(textarea.scrollHeight, 120) + 'px';
     });
 
-    // Enter тАФ ╨╛╤В╨┐╤А╨░╨▓╨╕╤В╤М, Shift+Enter тАФ ╨╜╨╛╨▓╨░╤П ╤Б╤В╤А╨╛╨║╨░
+    // Enter — отправить, Shift+Enter — новая строка
     textarea.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' && !e.shiftKey) {
             e.preventDefault();
@@ -515,7 +515,7 @@
         }
     });
 
-    // тФАтФА ╨Т╤Б╤В╨░╨▓╨║╨░ ╤В╨╡╨║╤Б╤В╨░ ╨╕╨╖ quick-chips тФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФА
+    // ── Вставка текста из quick-chips ─────────────────────────
     function setMessage(text) {
         textarea.value = text;
         textarea.focus();
@@ -523,21 +523,21 @@
         textarea.style.height = Math.min(textarea.scrollHeight, 120) + 'px';
     }
 
-    // тФАтФА ╨д╨╛╤А╨╝╨░╤В╨╕╤А╨╛╨▓╨░╨╜╨╕╨╡ ╨▓╤А╨╡╨╝╨╡╨╜╨╕ тФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФА
+    // ── Форматирование времени ─────────────────────────────────
     function timeNow() {
         return new Date().toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
     }
 
-    // тФАтФА ╨Ф╨╛╨▒╨░╨▓╨╗╨╡╨╜╨╕╨╡ ╤Б╨╛╨╛╨▒╤Й╨╡╨╜╨╕╤П ╨▓ ╤З╨░╤В тФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФА
+    // ── Добавление сообщения в чат ─────────────────────────────
     function addMessage(role, text, meta = '') {
         const chat = document.getElementById('chatWindow');
         const div = document.createElement('div');
         div.className = `msg ${role}`;
 
-        const isError = role === 'bot' && text.startsWith('тЭМ');
+        const isError = role === 'bot' && text.startsWith('❌');
 
         div.innerHTML = `
-            <div class="msg-avatar">${role === 'user' ? 'ЁЯСд' : 'ЁЯдЦ'}</div>
+            <div class="msg-avatar">${role === 'user' ? '👤' : '🤖'}</div>
             <div>
                 <div class="msg-bubble ${isError ? 'error' : ''}">${escapeHtml(text)}</div>
                 <div class="msg-meta">${meta || timeNow()}</div>
@@ -548,14 +548,14 @@
         chat.scrollTop = chat.scrollHeight;
     }
 
-    // тФАтФА Typing indicator тФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФА
+    // ── Typing indicator ──────────────────────────────────────
     function showTyping() {
         const chat = document.getElementById('chatWindow');
         const div = document.createElement('div');
         div.className = 'msg bot';
         div.id = 'typingIndicator';
         div.innerHTML = `
-            <div class="msg-avatar">ЁЯдЦ</div>
+            <div class="msg-avatar">🤖</div>
             <div>
                 <div class="msg-bubble">
                     <div class="typing-bubble">
@@ -573,7 +573,7 @@
         if (el) el.remove();
     }
 
-    // тФАтФА ╨Ю╤Б╨╜╨╛╨▓╨╜╨░╤П ╤Д╤Г╨╜╨║╤Ж╨╕╤П ╨╛╤В╨┐╤А╨░╨▓╨║╨╕ тФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФА
+    // ── Основная функция отправки ─────────────────────────────
     async function sendMessage() {
         const input = document.getElementById('messageInput');
         const sendBtn = document.getElementById('sendBtn');
@@ -581,17 +581,17 @@
 
         if (!message) return;
 
-        // ╨Ф╨╛╨▒╨░╨▓╨╗╤П╨╡╨╝ ╤Б╨╛╨╛╨▒╤Й╨╡╨╜╨╕╨╡ ╨┐╨╛╨╗╤М╨╖╨╛╨▓╨░╤В╨╡╨╗╤П
-        addMessage('user', message, `╨Т╤Л ┬╖ ${timeNow()}`);
+        // Добавляем сообщение пользователя
+        addMessage('user', message, `Вы · ${timeNow()}`);
         messageCount++;
         document.getElementById('msgCount').textContent = messageCount;
 
-        // ╨Ю╤З╨╕╤Й╨░╨╡╨╝ ╨┐╨╛╨╗╨╡
+        // Очищаем поле
         input.value = '';
         input.style.height = 'auto';
         sendBtn.disabled = true;
 
-        // ╨Я╨╛╨║╨░╨╖╤Л╨▓╨░╨╡╨╝ typing
+        // Показываем typing
         showTyping();
 
         const startTime = Date.now();
@@ -609,18 +609,18 @@
             hideTyping();
 
             if (data.success) {
-                addMessage('bot', data.response, `AI ┬╖ ${timeNow()} ┬╖ ${elapsed}╨╝╤Б`);
-                document.getElementById('lastTime').textContent = elapsed + '╨╝╤Б';
+                addMessage('bot', data.response, `AI · ${timeNow()} · ${elapsed}мс`);
+                document.getElementById('lastTime').textContent = elapsed + 'мс';
             } else {
-                addMessage('bot', 'тЭМ ' + (data.response || '╨Ю╤И╨╕╨▒╨║╨░ AI'), `╨Ю╤И╨╕╨▒╨║╨░ ┬╖ ${timeNow()}`);
+                addMessage('bot', '❌ ' + (data.response || 'Ошибка AI'), `Ошибка · ${timeNow()}`);
             }
 
         } catch (err) {
             hideTyping();
             if (err.name === 'TypeError') {
-                addMessage('bot', 'тЭМ ╨Э╨╡╤В ╤Б╨╛╨╡╨┤╨╕╨╜╨╡╨╜╨╕╤П ╤Б ╤Б╨╡╤А╨▓╨╡╤А╨╛╨╝. ╨г╨▒╨╡╨┤╨╕╤В╨╡╤Б╤М ╤З╤В╨╛ backend ╨╖╨░╨┐╤Г╤Й╨╡╨╜ ╨╜╨░ ╨┐╨╛╤А╤В╤Г 8081.');
+                addMessage('bot', '❌ Нет соединения с сервером. Убедитесь что backend запущен на порту 8081.');
             } else {
-                addMessage('bot', 'тЭМ ╨Ю╤И╨╕╨▒╨║╨░: ' + err.message);
+                addMessage('bot', '❌ Ошибка: ' + err.message);
             }
         } finally {
             sendBtn.disabled = false;
@@ -628,14 +628,14 @@
         }
     }
 
-    // тФАтФА ╨н╨║╤А╨░╨╜╨╕╤А╨╛╨▓╨░╨╜╨╕╨╡ HTML тФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФА
+    // ── Экранирование HTML ────────────────────────────────────
     function escapeHtml(text) {
         const div = document.createElement('div');
         div.appendChild(document.createTextNode(text));
         return div.innerHTML;
     }
 
-    // тФАтФА Health check ╨┐╤А╨╕ ╨╖╨░╨│╤А╤Г╨╖╨║╨╡ тФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФА
+    // ── Health check при загрузке ─────────────────────────────
     async function checkHealth() {
         const badge = document.getElementById('statusBadge');
         const text  = document.getElementById('statusText');

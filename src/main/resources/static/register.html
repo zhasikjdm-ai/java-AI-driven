@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>╨а╨╡╨│╨╕╤Б╤В╤А╨░╤Ж╨╕╤П тАФ AI-Driven</title>
+    <title>Регистрация — AI-Driven</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -97,8 +97,8 @@
 <body>
 
 <div class="auth-card">
-    <h1>╨б╨╛╨╖╨┤╨░╤В╤М ╨░╨║╨║╨░╤Г╨╜╤В</h1>
-    <p class="subtitle">╨Я╤А╨╕╤Б╨╛╨╡╨┤╨╕╨╜╤П╨╣╤В╨╡╤Б╤М ╨║ AI-Driven Backend</p>
+    <h1>Создать аккаунт</h1>
+    <p class="subtitle">Присоединяйтесь к AI-Driven Backend</p>
 
     <form id="registerForm">
         <div class="form-group">
@@ -106,15 +106,15 @@
             <input type="email" id="email" placeholder="name@example.com" required>
         </div>
         <div class="form-group">
-            <label>╨Я╨░╤А╨╛╨╗╤М</label>
-            <input type="password" id="password" placeholder="тАвтАвтАвтАвтАвтАвтАвтАв" required>
+            <label>Пароль</label>
+            <input type="password" id="password" placeholder="••••••••" required>
         </div>
-        <button type="submit" id="submitBtn">╨Ч╨░╤А╨╡╨│╨╕╤Б╤В╤А╨╕╤А╨╛╨▓╨░╤В╤М╤Б╤П</button>
+        <button type="submit" id="submitBtn">Зарегистрироваться</button>
         <div id="errorMsg" class="error-msg"></div>
     </form>
 
     <div class="footer-link">
-        ╨г╨╢╨╡ ╨╡╤Б╤В╤М ╨░╨║╨║╨░╤Г╨╜╤В? <a href="login.html">╨Т╨╛╨╣╤В╨╕</a>
+        Уже есть аккаунт? <a href="login.html">Войти</a>
     </div>
 </div>
 
@@ -142,7 +142,7 @@
             errorMsg.style.display = 'block';
             submitBtn.disabled = false;
         } else {
-            alert('╨а╨╡╨│╨╕╤Б╤В╤А╨░╤Ж╨╕╤П ╤Г╤Б╨┐╨╡╤И╨╜╨░! ╨Я╤А╨╛╨▓╨╡╤А╤М╤В╨╡ ╨┐╨╛╤З╤В╤Г ╨┤╨╗╤П ╨┐╨╛╨┤╤В╨▓╨╡╤А╨╢╨┤╨╡╨╜╨╕╤П ╨╕╨╗╨╕ ╨▓╨╛╨╣╨┤╨╕╤В╨╡.');
+            alert('Регистрация успешна! Проверьте почту для подтверждения или войдите.');
             window.location.href = 'login.html';
         }
     };
